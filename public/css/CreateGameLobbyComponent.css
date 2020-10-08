@@ -1,0 +1,43 @@
+#createGameLobbyComponentHeader {
+    position: fixed; top: 0%;
+    background-color: white;
+    height: 50px;
+    width: 120%;
+    margin-left: -10px;
+}
+
+#createGameLobbyComponentContainer {
+    position: absolute; 
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+#gameLobbyCode {
+    position: fixed; left: 20px; top: -10px;
+    font-family: aerial;
+    font-size: 22px;
+    color: #918e8e;
+}
+
+#waitingForFriend {
+    font-size: 22px;
+    color: white;
+    vertical-align: middle;
+    margin-top: 150px;
+}
+
+#waitingForFriendAnimation {
+    position: relative; top: 100px; left: 50%;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #0080fe;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
