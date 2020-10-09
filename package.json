@@ -58,6 +58,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "react": "^16.4.2",
+    "react-checkmark": "^1.3.0",
     "react-dom": "^16.4.2",
     "react-private-route": "^1.1.2",
     "react-router-dom": "^4.3.1",
