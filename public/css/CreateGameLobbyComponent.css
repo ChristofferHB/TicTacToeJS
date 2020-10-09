@@ -1,6 +1,6 @@
 #createGameLobbyComponentHeader {
     position: fixed; top: 0%;
-    background-color: white;
+    background-color: #0080fe;
     height: 50px;
     width: 120%;
     margin-left: -10px;
@@ -17,19 +17,19 @@
     position: fixed; left: 20px; top: -10px;
     font-family: aerial;
     font-size: 22px;
-    color: #918e8e;
+    color: white;
 }
 
 #waitingForFriend {
     font-size: 22px;
-    color: white;
+    color: #0080fe;
     vertical-align: middle;
     margin-top: 150px;
 }
 
 #waitingForFriendAnimation {
     position: relative; top: 100px; left: 50%;
-    border: 5px solid #f3f3f3;
+    border: 5px solid white;
     border-top: 5px solid #0080fe;
     border-radius: 50%;
     width: 20px;

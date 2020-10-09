@@ -1,21 +1,23 @@
 body {
-    background-color: #b4cfde;
+    background-color: #7e8491;
 }
 
 #startScreenContainer {
     height: 50%;
-    width: 20%;
+    width: 22%;
     margin: 0;
     position: fixed;
     top: 40%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    background-color: #f8f8f8;
-    -webkit-box-shadow: 0px 10px 20px 0px rgba(50, 50, 50, 0.15);
-	-moz-box-shadow:    0px 10px 20px 0px rgba(50, 50, 50, 0.15);
-    box-shadow:         0px 10px 20px 0px rgba(50, 50, 50, 0.15);
+    background-color: #F2F3F5;
+    -webkit-box-shadow: 5px 5px 20px 0px rgba(7, 7, 10, 0.3);
+	-moz-box-shadow:    5px 5px 20px 0px rgba(7, 7, 10, 0.3);
+    box-shadow:         5px 5px 20px 0px rgba(7, 7, 10, 0.3);
     overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid #E1E1E1;
 }
 
 #startScreenUserNameField {
@@ -29,7 +31,7 @@ body {
     height: 5%;
     width: 70%;
     color: black;
-    font-size: 1.2vw;
+    font-size: 1.0vw;
     font-family: aerial;
     text-align: center;
     border-top: none;
@@ -37,7 +39,7 @@ body {
     border-right: none;
     border-bottom: 1px solid #c5c9c7;
     padding-bottom: 10px;
-    background-color: #f8f8f8;
+    background-color: #F2F3F5;
 }
 
 #continueButton {
@@ -49,11 +51,11 @@ body {
     min-width: 70%;
     min-height: 8%;
     border: none;
-    background-color: #0080fe;
+    background-color: #1D72DC;
     outline: none;
     color: white;
     font-family: aerial;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 #continueButton:hover {
@@ -72,6 +74,6 @@ body {
 
 #errorMessage {
     font-family: aerial;
-    position: fixed; left: 30%; top: 65%;
+    position: fixed; left: 33%; top: 68%;
     color: red;
 }

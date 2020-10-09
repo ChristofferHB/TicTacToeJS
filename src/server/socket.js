@@ -32,18 +32,15 @@ function listen() {
                     }
     
                     let member = {
-                        username: username
+                        username: username,
+                        socket_id: socket.id
                     }
     
-                    game.members.push(JSON.stringify(member));
-    
+                    game.members.push(member);
                     games.push(game);
-                    console.log("Game created by: " + username);
-                    console.log("Game code: " + gameCode);
 
                     io.to(socket.id).emit('gameCode', {code: gameCode}); 
 
-                    console.log(games);
                     
                     break;
                 
@@ -55,14 +52,17 @@ function listen() {
                         if(games[i].gameCode === receivedGameCode) {
     
                             let newMember = {
-                                username: username
+                                username: username,
+                                socket_id: socket.id
                             }
             
                             games[i].members.push(JSON.stringify(newMember));
-    
+
                             console.log("Found game");
-                            io.to(socket.id).emit('gameCodeSearch', {foundGame: true, creator: games[i].members[0].username}); 
-                            console.log(games[i].members);
+                            io.to(socket.id).emit('gameCodeSearch', { foundGame: true, creator: games[i].members[0].username }); 
+
+                            let creatorSocketId = games[i].members[0].socket_id;
+                            io.to(creatorSocketId).emit( 'userJoinedGame', { username: newMember.username }); 
                             foundGame = true;
                         }
                     }
@@ -82,7 +82,7 @@ function listen() {
         socket.on('disconnect', function () {
             for(let i = 0; i < games.length; i++) {
                 for(let j = 0; j < games[i].members.length; j++) {
-                   let member = JSON.parse(games[i].members[j]);
+                   let member = games[i].members[j];
                    
                    if(member.username === username) {
                        let membersArray = Object.keys(games[i].members).map((k) => games[i].members[k]);
@@ -94,6 +94,8 @@ function listen() {
                    
                 }
             }
+            console.log("Disconnected!");
+            console.log(games);
         });
     });
 
