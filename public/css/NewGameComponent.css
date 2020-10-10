@@ -7,12 +7,12 @@
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    background-color: #F2F3F5;
-    -webkit-box-shadow: 5px 5px 20px 0px rgba(7, 7, 10, 0.3);
-	-moz-box-shadow:    5px 5px 20px 0px rgba(7, 7, 10, 0.3);
-    box-shadow:         5px 5px 20px 0px rgba(7, 7, 10, 0.3);
+    background-color: #fff;
+    -webkit-box-shadow: 0 3px 7px -1px rgba(#000, .1);
+    -moz-box-shadow:    0 3px 7px -1px rgba(#000, .1);
+    box-shadow: 0 3px 7px -1px rgba(#000, .1);
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid #E1E1E1;
 }
 
@@ -22,24 +22,27 @@
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    font-family: aerial;
     font-size: 22px;
 }
 
 #createGameButtton {
     position: fixed;
-    top: 52%;
+    top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     min-width: 70%;
     min-height: 8%;
     border: none;
-    background-color: #1D73DA;
     outline: none;
+    height: 50px;
+    width: 300px;
+    background-color: #43b72a;
     color: white;
-    font-family: aerial;
-    font-size: 22px;
+    text-align: center; 
+    line-height: 50px;
+    border-radius: 5px;
+    font-size: 18px;
 }
 
 #joinGameButton {
@@ -51,37 +54,45 @@
     min-width: 70%;
     min-height: 8%;
     border: none;
-    background-color: #1D73DA;
     outline: none;
+    height: 50px;
+    width: 300px;
+    background-color: #43b72a;
     color: white;
-    font-family: aerial;
-    font-size: 22px;
+    text-align: center; 
+    line-height: 50px;
+    border-radius: 5px;
+    font-size: 18px;
 }
 
 #randomGameButton {
     position: fixed;
-    top: 72%;
+    top: 74%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     min-width: 70%;
     min-height: 8%;
     border: none;
-    background-color: #1D73DA;
     outline: none;
+    height: 50px;
+    width: 300px;
+    background-color: #43b72a;
     color: white;
-    font-family: aerial;
-    font-size: 22px;
+    text-align: center; 
+    line-height: 50px;
+    border-radius: 5px;
+    font-size: 18px;
 }
 
 #createGameButtton:hover {
-    background-color: #48a2fa;
+    background-color: #55e657;
 }
 
 #joinGameButton:hover {
-    background-color: #48a2fa;
+    background-color: #55e657;
 }
 
 #randomGameButton:hover {
-    background-color: #48a2fa; 
+    background-color: #55e657;
 }

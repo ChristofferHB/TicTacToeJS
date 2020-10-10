@@ -7,11 +7,11 @@
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    background-color: #F2F3F5;
-    -webkit-box-shadow: 5px 5px 20px 0px rgba(7, 7, 10, 0.3);
-	-moz-box-shadow:    5px 5px 20px 0px rgba(7, 7, 10, 0.3);
-    box-shadow:         5px 5px 20px 0px rgba(7, 7, 10, 0.3);
+    background-color: #fff;
+    -webkit-box-shadow: 0 3px 7px -1px rgba(#000, .1);
+    -moz-box-shadow:    0 3px 7px -1px rgba(#000, .1);
+    box-shadow: 0 3px 7px -1px rgba(#000, .1);
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid #E1E1E1;
 }

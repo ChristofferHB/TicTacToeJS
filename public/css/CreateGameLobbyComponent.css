@@ -4,6 +4,7 @@
     height: 50px;
     width: 120%;
     margin-left: -10px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 #createGameLobbyComponentContainer {
@@ -15,24 +16,28 @@
 
 #gameLobbyCode {
     position: fixed; left: 20px; top: -10px;
-    font-family: aerial;
+    font-family: arial;
     font-size: 22px;
     color: black;
 }
 
+#gameLobbyCodeSpan {
+  color: #fcba03;
+}
+
 #waitingForFriend {
     font-size: 22px;
-    color: white;
+    color: black;
     vertical-align: middle;
     margin-top: 150px;
 }
 
 #waitingForFriendAnimation {
-    position: fixed; left: 49%; top: 29%; 
+    position: absolute; left: 6%; top: 33%; 
     border: 5px solid #fcba03; 
-    border-top: 5px solid white;
-    border-left: 5px solid white;
-    border-right: 5px solid white;
+    border-top: 5px solid #f1f1f1;
+    border-left: 5px solid #f1f1f1;
+    border-right: 5px solid #f1f1f1;
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -46,39 +51,83 @@
   }
 
   #playerOneContainer {
+      position: relative;
+      float: left;
       margin: auto;
       height: 100px;
       width: 300px;
-      background-color: #48a2fa;
-      -webkit-box-shadow: 5px 5px 20px 0px rgba(7, 7, 10, 0.3);
-      -moz-box-shadow:    5px 5px 20px 0px rgba(7, 7, 10, 0.3);
-      box-shadow:         5px 5px 20px 0px rgba(7, 7, 10, 0.3);
+      background-color: #fff;
+      -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      -moz-box-shadow:    0 4px 8px 0 rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
       overflow: hidden;
       border-radius: 5px;
+      text-align: center;
+      line-height: 98px;
+      color: black;
+      font-size: 22px;
   }
 
   #playerTwoContainer {
+    position: relative; 
     margin: auto;
-    margin-top: 0.4%;
     height: 100px;
     width: 300px;
-    background-color: #48a2fa;
-    -webkit-box-shadow: 5px 5px 20px 0px rgba(7, 7, 10, 0.3);
-    -moz-box-shadow:    5px 5px 20px 0px rgba(7, 7, 10, 0.3);
-    box-shadow:         5px 5px 20px 0px rgba(7, 7, 10, 0.3);
+    background-color: #fff;
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    -moz-box-shadow:    0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     overflow: hidden;
     border-radius: 5px;
     text-align: center;
-    line-height: 150px;
-    color: white;
-    font-family: aerial;
+    line-height: 98px;
+    color: black;
+    font-size: 25px;
+  }
+
+  #playerTwoContainerWaiting {
+    position: relative; 
+    margin: auto;
+    height: 100px;
+    width: 300px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    -moz-box-shadow:    0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    overflow: hidden;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 98px;
+    color: black;
   }
 
   #playerContainer {
-      margin-top: 8%;
+    margin: auto;
+    position: relative; top: 100px;
+    width: 34%;
+    height: 100%;
   }
 
 
   #checkmarkDiv {
-    position: fixed; left: 49%; top: 18%; 
+    position: absolute; left: 6%; top: 33%; 
   }
+
+  #otherUserCheckMarkDiv {
+    position: absolute; left: 6%; top: 33%; 
+  }
+
+  #startGameBtn {
+    position: relative; top: 120px;
+    margin: auto; 
+    height: 50px;
+    width: 300px;
+    background-color: #43b72a;
+    color: white;
+    text-align: center; 
+    line-height: 50px;
+    border-radius: 5px;
+    font-size: 20px;
+    
+  }
+

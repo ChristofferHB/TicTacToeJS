@@ -59,7 +59,7 @@ export class App extends React.Component {
                             <Route exact path='/newGame' render={(props) => <NewGameComponent {...props} username={this.state.username} setGameCode={this.setGameCode} /> } />
                             <Route exact path='/joingame' render={(props) => <JoinGameComponent {...props} username={this.state.username} /> } />
                             <Route exact path='/joingamelobby' render={(props) => <JoinGameLobbyComponent {...props} /> } />
-                            <Route exact path='/creategamelobby' render={(props) => <CreateGameLobbyComponent {...props} gameCode={this.state.gameCode} /> } />
+                            <Route exact path='/creategamelobby' render={(props) => <CreateGameLobbyComponent {...props} gameCode={this.state.gameCode} creatorUsername={this.state.username} /> } />
                             <Route exact path='/randomgamelobby' render={(props) => <RandomGameComponent {...props} /> } />
                     </Switch>
                 </div>

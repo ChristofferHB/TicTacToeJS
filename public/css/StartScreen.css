@@ -1,5 +1,6 @@
 body {
-    background-color: #7e8491;
+    background-color: #f1f1f1;
+    font-family: arial;
 }
 
 #startScreenContainer {
@@ -11,12 +12,9 @@ body {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    background-color: #F2F3F5;
-    -webkit-box-shadow: 5px 5px 20px 0px rgba(7, 7, 10, 0.3);
-	-moz-box-shadow:    5px 5px 20px 0px rgba(7, 7, 10, 0.3);
-    box-shadow:         5px 5px 20px 0px rgba(7, 7, 10, 0.3);
+    background-color: #fff;
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid #E1E1E1;
 }
 
@@ -32,34 +30,37 @@ body {
     width: 70%;
     color: black;
     font-size: 1.0vw;
-    font-family: aerial;
     text-align: center;
     border-top: none;
     border-left: none;
     border-right: none;
     border-bottom: 1px solid #c5c9c7;
     padding-bottom: 10px;
-    background-color: #F2F3F5;
+    background-color: #fff;
 }
 
 #continueButton {
     position: fixed;
-    top: 62%;
+    top: 64%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     min-width: 70%;
     min-height: 8%;
     border: none;
-    background-color: #1D72DC;
     outline: none;
+    height: 50px;
+    width: 300px;
+    background-color: #43b72a;
     color: white;
-    font-family: aerial;
-    font-size: 20px;
+    text-align: center; 
+    line-height: 50px;
+    border-radius: 5px;
+    font-size: 18px;
 }
 
 #continueButton:hover {
-    background-color: #48a2fa;
+    background-color: #55e657;
 }
 
 #startScreenLogo {
@@ -68,12 +69,10 @@ body {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    font-family: aerial;
     font-size: 40px;
 }
 
 #errorMessage {
-    font-family: aerial;
     position: fixed; left: 33%; top: 68%;
     color: red;
 }
