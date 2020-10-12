@@ -41,7 +41,6 @@ function listen() {
 
                     io.to(socket.id).emit('gameCode', {code: gameCode}); 
 
-                    
                     break;
                 
                 case 2:

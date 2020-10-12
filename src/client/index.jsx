@@ -7,6 +7,7 @@ import {JoinGameComponent} from "./JoinGameComponent";
 import {JoinGameLobbyComponent} from "./JoinGameLobbyComponent";
 import {CreateGameLobbyComponent} from "./CreateGameLobbyComponent";
 import {RandomGameComponent} from "./RandomGameComponent";
+import {GameComponent} from "./GameComponent";
 
 export class App extends React.Component {
 
@@ -17,13 +18,21 @@ export class App extends React.Component {
         this.state = {
             showStartScreen: true,
             showFindGameScreen: false,
-            gameCode: ''
+            gameCode: '',
+            gameCreatorUsername: ''
         }
 
         this.showFindGameScreen = this.showFindGameScreen.bind(this);
         this.setUsername = this.setUsername.bind(this);
         this.setGameCode = this.setGameCode.bind(this);
+        this.setGameCreatorUsername = this.setGameCreatorUsername.bind(this);
 
+    }
+
+    setGameCreatorUsername(gameCreatorUsername) {
+        this.setState({
+            gameCreatorUsername: gameCreatorUsername
+          });
     }
 
     setGameCode(gameCode) {
@@ -57,10 +66,11 @@ export class App extends React.Component {
                     <Switch>
                             <Route exact path='/' render={(props) => <StartScreenComponent {...props} setUsername={this.setUsername} /> } />
                             <Route exact path='/newGame' render={(props) => <NewGameComponent {...props} username={this.state.username} setGameCode={this.setGameCode} /> } />
-                            <Route exact path='/joingame' render={(props) => <JoinGameComponent {...props} username={this.state.username} /> } />
-                            <Route exact path='/joingamelobby' render={(props) => <JoinGameLobbyComponent {...props} /> } />
+                            <Route exact path='/joingame' render={(props) => <JoinGameComponent {...props} username={this.state.username} setGameCreatorUsername={this.setGameCreatorUsername} /> } />
+                            <Route exact path='/joingamelobby' render={(props) => <JoinGameLobbyComponent {...props} gameCreatorUsername={this.state.gameCreatorUsername} currentUsername={this.state.username} /> } />
                             <Route exact path='/creategamelobby' render={(props) => <CreateGameLobbyComponent {...props} gameCode={this.state.gameCode} creatorUsername={this.state.username} /> } />
                             <Route exact path='/randomgamelobby' render={(props) => <RandomGameComponent {...props} /> } />
+                            <Route exact path='/game' render={(props) => <GameComponent {...props} /> } />
                     </Switch>
                 </div>
             </BrowserRouter>

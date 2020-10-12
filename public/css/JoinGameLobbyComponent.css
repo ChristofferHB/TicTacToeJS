@@ -25,3 +25,25 @@ body {
     box-shadow:         0px 10px 20px 0px rgba(50, 50, 50, 0.15);
     overflow: hidden;
 }
+
+#waitingForCreator {
+    position: relative; left: 31%; 
+    margin-top: 4%;
+    display: block;
+    animation-name: waitingForCreatorFadeInAnimation;
+    -webkit-animation-name: waitingForCreatorFadeInAnimation;
+    animation-duration: 1.5s;
+    -webkit-animation-duration: 1.5s;
+    animation-timing-function: ease;
+    -webkit-animation-timing-function: ease;
+     animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-delay: 2s;
+    -webkit-animation-delay: 1.2s;
+    opacity: 0;
+}
+
+@keyframes waitingForCreatorFadeInAnimation {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }

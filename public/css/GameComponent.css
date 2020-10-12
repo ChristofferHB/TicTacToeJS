@@ -1,0 +1,30 @@
+#gameContainer {
+    position: relative; top: 130px;
+    height: 500px;
+    width: 100%;
+}
+
+#gridContainer {
+    margin: auto;
+    width: 20%;
+    height: 100%;
+}
+
+#box {
+    position: relative;
+    display: inline-block;
+    height: 100px;
+    width: 27%;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2);
+    -moz-box-shadow:    0 1px 4px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2);
+    overflow: hidden;
+    border-radius: 5px;
+    margin-right: 2%;
+    margin-top: 2%;
+}
+
+#box:hover {
+    background-color: #f2f0f0;
+}

@@ -18,22 +18,22 @@ export class JoinGameLobbyComponent extends React.Component {
                 <div>
                 <div id="createGameLobbyComponentContainer">
                         </div>
-                        <div id="createGameLobbyComponentHeader">
-                                <p id="gameLobbyCode">Game code: </p>
+                        <div id="header">
                         </div>
                         <div id="playerContainer">
                                 <div id="playerOneContainer">
-                                    Freck
+                                    {this.props.gameCreatorUsername}
                                     <div id="checkmarkDiv">
                                         <Checkmark size={35} />
                                     </div>
                                 </div>
                                 <div id="playerTwoContainer">
-                                    Check
+                                    {this.props.currentUsername}
                                     <div id="otherUserCheckMarkDiv">
                                             <Checkmark size={35} />
                                     </div>
                                 </div>
+                                <p id="waitingForCreator">Waiting for {this.props.gameCreatorUsername} to start the game...</p>
                         </div>
                     </div>
             )

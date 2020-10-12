@@ -23,18 +23,17 @@ export class JoinGameComponent extends React.Component {
     }
 
     gameCodeSearchCallback(searchResult) {
-        console.log(searchResult);
         if(!searchResult.foundGame) {
             this.setState({
                 errorMessage: 'Could not find game'
               })
         } else {
+            this.props.setGameCreatorUsername(searchResult.creator);
             this.props.history.push("/joingamelobby");
         }
     }
 
     joinGameButtonOnClick() {
-
         if(this.state.gameCodeFieldText === 'Enter game id' || this.state.gameCodeFieldText === '') {
             this.setState({
                 errorMessage: 'Please enter game code'
