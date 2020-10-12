@@ -1,7 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import {withRouter} from 'react-router-dom';
-import {NotFound} from "./not_found";
+import { Checkmark } from 'react-checkmark';
 
 export class JoinGameLobbyComponent extends React.Component {
 
@@ -18,8 +16,26 @@ export class JoinGameLobbyComponent extends React.Component {
     render() {
             return (
                 <div>
-
-                </div>
+                <div id="createGameLobbyComponentContainer">
+                        </div>
+                        <div id="createGameLobbyComponentHeader">
+                                <p id="gameLobbyCode">Game code: </p>
+                        </div>
+                        <div id="playerContainer">
+                                <div id="playerOneContainer">
+                                    Freck
+                                    <div id="checkmarkDiv">
+                                        <Checkmark size={35} />
+                                    </div>
+                                </div>
+                                <div id="playerTwoContainer">
+                                    Check
+                                    <div id="otherUserCheckMarkDiv">
+                                            <Checkmark size={35} />
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
             )
     }
 }

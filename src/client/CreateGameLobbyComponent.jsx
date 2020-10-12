@@ -76,8 +76,8 @@ export class CreateGameLobbyComponent extends React.Component {
                                         <Checkmark size={35} />
                                 </div>
                             </div>
+                            <button id="startGameBtn">Start game</button>
                     </div>
-                    <div id="startGameBtn">Start game</div>
                 </div>
         );
     }

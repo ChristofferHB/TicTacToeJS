@@ -18,16 +18,12 @@
     position: fixed; left: 20px; top: -10px;
     font-family: arial;
     font-size: 22px;
-    color: black;
-}
-
-#gameLobbyCodeSpan {
-  color: #fcba03;
+    color: #333333;
 }
 
 #waitingForFriend {
     font-size: 22px;
-    color: black;
+    color: #333333;
     vertical-align: middle;
     margin-top: 150px;
 }
@@ -51,7 +47,7 @@
   }
 
   #playerOneContainer {
-      position: relative;
+      position: relative; 
       float: left;
       margin: auto;
       height: 100px;
@@ -64,13 +60,14 @@
       border-radius: 5px;
       text-align: center;
       line-height: 98px;
-      color: black;
-      font-size: 22px;
+      color: #333333;
+      font-size: 25px;
   }
 
   #playerTwoContainer {
     position: relative; 
     margin: auto;
+    margin-top: 10px;
     height: 100px;
     width: 300px;
     background-color: #fff;
@@ -81,7 +78,7 @@
     border-radius: 5px;
     text-align: center;
     line-height: 98px;
-    color: black;
+    color: #333333;
     font-size: 25px;
   }
 
@@ -98,7 +95,7 @@
     border-radius: 5px;
     text-align: center;
     line-height: 98px;
-    color: black;
+    color: #333333;
   }
 
   #playerContainer {
@@ -117,17 +114,43 @@
     position: absolute; left: 6%; top: 33%; 
   }
 
+  #startGameBtnDiv {
+    position: absolute; top: 23%; left: 40%;
+  }
+
   #startGameBtn {
-    position: relative; top: 120px;
-    margin: auto; 
-    height: 50px;
-    width: 300px;
+    position: relative; left: 31%; 
+    margin-top: 3%;
+    display: block;
+    min-width: 200px;
+    min-height: 5%;
     background-color: #43b72a;
     color: white;
     text-align: center; 
     line-height: 50px;
     border-radius: 5px;
+    border: none;
+    outline: none;
     font-size: 20px;
-    
+    opacity: 0;
+    animation-name: startGameBtnFadeInAnimation;
+    -webkit-animation-name: startGameBtnFadeInAnimation;
+    animation-duration: 1.5s;
+    -webkit-animation-duration: 1.5s;
+    animation-timing-function: ease;
+    -webkit-animation-timing-function: ease;
+     animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-delay: 2s;
+    -webkit-animation-delay: 1.2s;
   }
 
+  #startGameBtn:hover {
+    opacity: 0.5 !important;
+}
+
+
+  @keyframes startGameBtnFadeInAnimation {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }

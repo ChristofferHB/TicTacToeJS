@@ -33,14 +33,13 @@
     transform: translate(-50%, -50%);
     min-width: 70%;
     min-height: 8%;
+    height: 10%;
+    width: 40%;
     border: none;
     outline: none;
-    height: 50px;
-    width: 300px;
     background-color: #43b72a;
     color: white;
     text-align: center; 
-    line-height: 50px;
     border-radius: 5px;
     font-size: 18px;
 }
@@ -53,14 +52,13 @@
     transform: translate(-50%, -50%);
     min-width: 70%;
     min-height: 8%;
+    height: 10%;
+    width: 40%;
     border: none;
     outline: none;
-    height: 50px;
-    width: 300px;
     background-color: #43b72a;
     color: white;
     text-align: center; 
-    line-height: 50px;
     border-radius: 5px;
     font-size: 18px;
 }
@@ -73,26 +71,25 @@
     transform: translate(-50%, -50%);
     min-width: 70%;
     min-height: 8%;
+    height: 10%;
+    width: 40%;
     border: none;
     outline: none;
-    height: 50px;
-    width: 300px;
     background-color: #43b72a;
     color: white;
     text-align: center; 
-    line-height: 50px;
     border-radius: 5px;
     font-size: 18px;
 }
 
 #createGameButtton:hover {
-    background-color: #55e657;
+    opacity: 0.5;
 }
 
 #joinGameButton:hover {
-    background-color: #55e657;
+    opacity: 0.5;
 }
 
 #randomGameButton:hover {
-    background-color: #55e657;
+    opacity: 0.5;
 }
