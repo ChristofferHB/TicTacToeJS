@@ -30,7 +30,7 @@
 
 #waitingForFriendAnimation {
     position: absolute; left: 6%; top: 33%; 
-    border: 5px solid #fcba03; 
+    border: 5px solid #4285F4; 
     border-top: 5px solid #f1f1f1;
     border-left: 5px solid #f1f1f1;
     border-right: 5px solid #f1f1f1;
@@ -62,6 +62,7 @@
       line-height: 98px;
       color: #333333;
       font-size: 25px;
+      cursor: context-menu;
   }
 
   #playerTwoContainer {
@@ -80,6 +81,7 @@
     line-height: 98px;
     color: #333333;
     font-size: 25px;
+    cursor: context-menu;
   }
 
   #playerTwoContainerWaiting {
@@ -96,6 +98,7 @@
     text-align: center;
     line-height: 98px;
     color: #333333;
+    cursor: context-menu;
   }
 
   #playerContainer {
