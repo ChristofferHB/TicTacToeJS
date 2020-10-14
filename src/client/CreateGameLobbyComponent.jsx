@@ -1,7 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import {withRouter} from 'react-router-dom';
-import {NotFound} from "./not_found";
 import SocketConnection from './SocketConnection';
 import { Checkmark } from 'react-checkmark';
 
@@ -16,19 +13,21 @@ export class CreateGameLobbyComponent extends React.Component {
            opponentUsername: ''
         }
 
-        this.setUserJoinedGameCallback = this.setUserJoinedGameCallback.bind(this);
+        this.userJoinedGameCallback = this.userJoinedGameCallback.bind(this);
         this.startGameBtnOnClick = this.startGameBtnOnClick.bind(this);
     }
 
     componentDidMount() {
-        SocketConnection.setUserJoinedGameCallback(this.setUserJoinedGameCallback);
+        SocketConnection.setUserJoinedGameCallback(this.userJoinedGameCallback);
     }
 
     startGameBtnOnClick() {
+        SocketConnection.emitStartGame(this.props.gameCode);
+        console.log(this.props.gameCode);
         this.props.history.push('/game');
     } 
 
-    setUserJoinedGameCallback(user) {
+    userJoinedGameCallback(user) {
         this.setState({
             waitingForOpponent: false,
             opponentUsername: user.username

@@ -4,6 +4,7 @@ var jwt = require('jsonwebtoken');
 let gameCodeSearchCallback;
 let gameCodeCallback;
 let userJoinedGameCallback;
+let socket;
 
 function connect(username, option, gameCode) {
 
@@ -32,7 +33,15 @@ function connect(username, option, gameCode) {
     socket.on('userJoinedGame', function(data){
       userJoinedGameCallback(data);
     });
+
+    socket.on('startGame', function(data){
+      startGameCallback(data);
+    });
     
+}
+
+function emitStartGame(gameCode) {
+  socket.emit( 'startGame', { gameCode: gameCode }); 
 }
 
 function setUserJoinedGameCallback(callback) {
@@ -47,4 +56,8 @@ function setGameCodeSearchCallback(callback) {
     gameCodeSearchCallback = callback;
 }
 
-module.exports = {connect, setGameCodeSearchCallback, setGameCodeCallback, setUserJoinedGameCallback}
+function setStartGameCallback(callback) {
+    startGameCallback = callback;
+}
+
+module.exports = {connect, setGameCodeSearchCallback, setGameCodeCallback, setUserJoinedGameCallback, setStartGameCallback, emitStartGame}

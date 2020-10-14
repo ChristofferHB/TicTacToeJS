@@ -55,7 +55,7 @@ function listen() {
                                 socket_id: socket.id
                             }
             
-                            games[i].members.push(JSON.stringify(newMember));
+                            games[i].members.push(newMember);
 
                             console.log("Found game");
                             io.to(socket.id).emit('gameCodeSearch', { foundGame: true, creator: games[i].members[0].username }); 
@@ -96,6 +96,17 @@ function listen() {
             console.log("Disconnected!");
             console.log(games);
         });
+
+        socket.on('startGame', function(data){
+
+            for(let i = 0; i < games.length; i++) {
+                if(games[i].gameCode === data.gameCode.code) {
+                    console.log(games[i]);
+                    console.log("FOUND IT!");
+                    io.to(games[i].members[1].socket_id).emit('startGame'); 
+                }
+            }
+          });
     });
 
     http.listen(3000, () => {

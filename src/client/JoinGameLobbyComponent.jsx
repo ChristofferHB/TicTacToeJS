@@ -1,5 +1,6 @@
 import React from "react";
 import { Checkmark } from 'react-checkmark';
+import SocketConnection from './SocketConnection';
 
 export class JoinGameLobbyComponent extends React.Component {
 
@@ -11,6 +12,16 @@ export class JoinGameLobbyComponent extends React.Component {
             usernameFieldText: 'Enter game id'
         }
 
+        this.startGameCallback = this.startGameCallback.bind(this);
+
+    }
+
+    componentDidMount() {
+        SocketConnection.setStartGameCallback(this.startGameCallback);
+    }
+
+    startGameCallback() {
+        this.props.history.push('/game');
     }
 
     render() {
