@@ -35,6 +35,8 @@ function connect(username, option, gameCode) {
     });
 
     socket.on('startGame', function(data){
+      console.log("STARTGAMEDATA: ");
+      console.log(data);
       startGameCallback(data);
     });
     

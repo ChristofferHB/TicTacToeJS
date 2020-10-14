@@ -103,7 +103,20 @@ function listen() {
                 if(games[i].gameCode === data.gameCode.code) {
                     console.log(games[i]);
                     console.log("FOUND IT!");
-                    io.to(games[i].members[1].socket_id).emit('startGame'); 
+
+                    let xOrORandom = Math.floor(Math.random() * 2) + 1;
+                    console.log("XORONUMBER: ");
+                    console.log(xOrORandom);
+
+                    if(xOrORandom === 1) {
+                        io.to(games[i].members[0].socket_id).emit('startGame', { piece: 'X' }); 
+                        io.to(games[i].members[1].socket_id).emit('startGame', { piece: 'O' }); 
+                    } 
+
+                    if(xOrORandom === 2) {
+                        io.to(games[i].members[0].socket_id).emit('startGame', { piece: 'O' }); 
+                        io.to(games[i].members[1].socket_id).emit('startGame', { piece: 'X' }); 
+                    }
                 }
             }
           });
