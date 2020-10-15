@@ -17,10 +17,12 @@ export class JoinGameLobbyComponent extends React.Component {
     }
 
     componentDidMount() {
-        SocketConnection.setStartGameCallback(this.startGameCallback);
+        SocketConnection.setStartGameJoinerCallback(this.startGameCallback);
     }
 
-    startGameCallback() {
+    startGameCallback(data) {
+        console.log("Called in JoinGameLobbyComponent");
+        this.props.setTurnIdentification(data.turnIdentification);
         this.props.history.push('/game');
     }
 

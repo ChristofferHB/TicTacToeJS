@@ -5,6 +5,8 @@ let gameCodeSearchCallback;
 let gameCodeCallback;
 let userJoinedGameCallback;
 let socket;
+let joinerStartGameCallback;
+let creatorStartGameCallback;
 
 function connect(username, option, gameCode) {
 
@@ -35,15 +37,25 @@ function connect(username, option, gameCode) {
     });
 
     socket.on('startGame', function(data){
-      console.log("STARTGAMEDATA: ");
-      console.log(data);
-      startGameCallback(data);
+      switch(data.playerRole) {
+        case 'creator':
+          creatorStartGameCallback(data);
+          break;
+        
+        case 'joiner':
+          joinerStartGameCallback(data);
+          break;
+      }
     });
     
 }
 
 function emitStartGame(gameCode) {
   socket.emit( 'startGame', { gameCode: gameCode }); 
+}
+
+function emitPlayerMove(username, playerMove) {
+  socket.emit( 'playerMove', { username: username, playerMove: playerMove }); 
 }
 
 function setUserJoinedGameCallback(callback) {
@@ -58,8 +70,12 @@ function setGameCodeSearchCallback(callback) {
     gameCodeSearchCallback = callback;
 }
 
-function setStartGameCallback(callback) {
-    startGameCallback = callback;
+function setStartGameCreatorCallback(callback) {
+  creatorStartGameCallback = callback;
 }
 
-module.exports = {connect, setGameCodeSearchCallback, setGameCodeCallback, setUserJoinedGameCallback, setStartGameCallback, emitStartGame}
+function setStartGameJoinerCallback(callback) {
+  joinerStartGameCallback = callback;
+}
+
+module.exports = {connect, setGameCodeSearchCallback, setGameCodeCallback, setUserJoinedGameCallback, setStartGameJoinerCallback, setStartGameCreatorCallback, emitStartGame, emitPlayerMove}

@@ -19,14 +19,19 @@ export class App extends React.Component {
             showStartScreen: true,
             showFindGameScreen: false,
             gameCode: '',
-            gameCreatorUsername: ''
+            gameCreatorUsername: '',
+            turnIdentification: ''
         }
 
-        this.showFindGameScreen = this.showFindGameScreen.bind(this);
         this.setUsername = this.setUsername.bind(this);
         this.setGameCode = this.setGameCode.bind(this);
         this.setGameCreatorUsername = this.setGameCreatorUsername.bind(this);
+        this.startGameCallback = this.startGameCallback.bind(this);
+        this.setTurnIdentification = this.setTurnIdentification.bind(this);
+    }
 
+    startGameCallback() {
+        this.props.history.push('/game');
     }
 
     setGameCreatorUsername(gameCreatorUsername) {
@@ -41,25 +46,22 @@ export class App extends React.Component {
           });
     }
 
-    showFindGameScreen() {
-        this.setState({
-            showStartScreen: false,
-            showFindGameScreen: true
-          });
-    }
-
     setUsername(username) {
         this.setState({
             username: username
           });
     }
 
+    setTurnIdentification(turnIdentification) {
+        console.log("SET: ");
+        console.log(turnIdentification);
+
+        this.setState({
+            turnIdentification: turnIdentification
+          });
+    }
 
     render() {
-
-        console.log("FROM RND: ");
-        console.log(this.state.gameCode);
-
         return (
             <BrowserRouter>
                 <div>
@@ -67,10 +69,10 @@ export class App extends React.Component {
                             <Route exact path='/' render={(props) => <StartScreenComponent {...props} setUsername={this.setUsername} /> } />
                             <Route exact path='/newGame' render={(props) => <NewGameComponent {...props} username={this.state.username} setGameCode={this.setGameCode} /> } />
                             <Route exact path='/joingame' render={(props) => <JoinGameComponent {...props} username={this.state.username} setGameCreatorUsername={this.setGameCreatorUsername} /> } />
-                            <Route exact path='/joingamelobby' render={(props) => <JoinGameLobbyComponent {...props} gameCreatorUsername={this.state.gameCreatorUsername} currentUsername={this.state.username} /> } />
-                            <Route exact path='/creategamelobby' render={(props) => <CreateGameLobbyComponent {...props} gameCode={this.state.gameCode} creatorUsername={this.state.username} /> } />
+                            <Route exact path='/joingamelobby' render={(props) => <JoinGameLobbyComponent {...props} gameCreatorUsername={this.state.gameCreatorUsername} currentUsername={this.state.username} setTurnIdentification={this.setTurnIdentification} /> } />
+                            <Route exact path='/creategamelobby' render={(props) => <CreateGameLobbyComponent {...props} gameCode={this.state.gameCode} creatorUsername={this.state.username} setTurnIdentification={this.setTurnIdentification} /> } />
                             <Route exact path='/randomgamelobby' render={(props) => <RandomGameComponent {...props} /> } />
-                            <Route exact path='/game' render={(props) => <GameComponent {...props} /> } />
+                            <Route exact path='/game' render={(props) => <GameComponent {...props} username={this.state.username} turnIdentification={this.state.turnIdentification} /> } />
                     </Switch>
                 </div>
             </BrowserRouter>

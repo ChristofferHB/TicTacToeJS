@@ -15,16 +15,22 @@ export class CreateGameLobbyComponent extends React.Component {
 
         this.userJoinedGameCallback = this.userJoinedGameCallback.bind(this);
         this.startGameBtnOnClick = this.startGameBtnOnClick.bind(this);
+        this.startGameCallback = this.startGameCallback.bind(this);
     }
 
     componentDidMount() {
         SocketConnection.setUserJoinedGameCallback(this.userJoinedGameCallback);
+        SocketConnection.setStartGameCreatorCallback(this.startGameCallback);
+    }
+
+    startGameCallback(data) {
+        console.log("Called in CreateGameLobby!");
+        this.props.setTurnIdentification(data.turnIdentification);
+        this.props.history.push('/game');
     }
 
     startGameBtnOnClick() {
         SocketConnection.emitStartGame(this.props.gameCode);
-        console.log(this.props.gameCode);
-        this.props.history.push('/game');
     } 
 
     userJoinedGameCallback(user) {

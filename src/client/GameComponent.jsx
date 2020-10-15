@@ -1,4 +1,5 @@
 import React from "react";
+import SocketConnection from "./SocketConnection";
 
 export class GameComponent extends React.Component {
 
@@ -8,7 +9,7 @@ export class GameComponent extends React.Component {
 
         this.state = {
             boxData: [
-                '',
+                'X',
                 '',
                 '',
                 '',
@@ -22,72 +23,127 @@ export class GameComponent extends React.Component {
 
     }
 
+    componentDidMount() {
+        console.log(this.props.turnIdentification);
+    }
+
     boxOnClick = (boxNumber) => {
 
         let boxData = this.state.boxData;
+        console.log(boxNumber);
 
         switch(boxNumber) {
-            case 1:
-                boxData[0] = 'X';
+            case 0:
+                boxData[0] = this.props.turnIdentification;
 
                 this.setState({ 
                     boxData: boxData
                  });
 
+                 SocketConnection.emitPlayerMove(this.props.username, 0);
+
                 break;
             
-            case 2:
-                console.log("2");
+            case 1:
+                boxData[1] = this.props.turnIdentification;
+
+                this.setState({ 
+                    boxData: boxData
+                 });
+
+                 SocketConnection.emitPlayerMove(this.props.username, 1);
+
                 break;
+
+            case 2:
+                boxData[2] = this.props.turnIdentification;
+
+                this.setState({ 
+                    boxData: boxData
+                 });
+
+                 SocketConnection.emitPlayerMove(this.props.username, 2);
+
+                break;
+
 
             case 3:
-                console.log("3");
+                boxData[3] = this.props.turnIdentification;
+
+                this.setState({ 
+                    boxData: boxData
+                 });
+
+                 SocketConnection.emitPlayerMove(this.props.username, 3);
+
                 break;
 
-
             case 4:
-                console.log("4");
+                boxData[4] = this.props.turnIdentification;
+
+                this.setState({ 
+                    boxData: boxData
+                 });
+
+                 SocketConnection.emitPlayerMove(this.props.username, 4);
+
                 break;
 
             case 5:
-                console.log("5");
+                boxData[5] = this.props.turnIdentification;
+
+                this.setState({ 
+                    boxData: boxData
+                 });
+
+                 SocketConnection.emitPlayerMove(this.props.username, 5);
+
                 break;
 
             case 6:
-                console.log("6");
+                boxData[6] = this.props.turnIdentification;
+
+                this.setState({ 
+                    boxData: boxData
+                 });
+
+                 SocketConnection.emitPlayerMove(this.props.username, 6);
+
                 break;
 
             case 7:
-                console.log("7");
+                boxData[7] = this.props.turnIdentification;
+
+                this.setState({ 
+                    boxData: boxData
+                 });
+
+                 SocketConnection.emitPlayerMove(this.props.username, 7);
+
                 break;
 
             case 8:
-                console.log("8");
-                break;
+                boxData[8] = this.props.turnIdentification;
 
-            case 9:
-                console.log("9");
+                this.setState({ 
+                    boxData: boxData
+                 });
+
+                 SocketConnection.emitPlayerMove(this.props.username, 8);
+
                 break;
         }
     }
 
     render() {
-        console.log("BOXDATA!");
-        console.log(this.state.boxData[0]);
             return (
                 <div>
                     <div id="header"></div>
                     <div id="gameContainer">
                         <div id="gridContainer">
-                            <div id="box" onClick={() => this.boxOnClick(1)}>{this.state.boxData[0]}</div>
-                            <div id="box" onClick={() => this.boxOnClick(2)}></div>
-                            <div id="box" onClick={() => this.boxOnClick(3)}></div>
-                            <div id="box" onClick={() => this.boxOnClick(4)}></div>
-                            <div id="box" onClick={() => this.boxOnClick(5)}></div>
-                            <div id="box" onClick={() => this.boxOnClick(6)}></div>
-                            <div id="box" onClick={() => this.boxOnClick(7)}></div>
-                            <div id="box" onClick={() => this.boxOnClick(8)}></div>
-                            <div id="box" onClick={() => this.boxOnClick(9)}></div>
+                        {this.state.boxData.map((item,i) => 
+                            <div id="box" key={i} onClick={() => this.boxOnClick(i)}><p id="turnIdentification">{this.state.boxData[i]}</p></div>
+                        )}
                         </div>
                     </div>
                 </div>
