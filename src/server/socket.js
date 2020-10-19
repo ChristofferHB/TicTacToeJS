@@ -104,21 +104,37 @@ function listen() {
                     console.log(games[i]);
                     console.log("FOUND IT!");
 
-                    let xOrORandom = Math.floor(Math.random() * 2) + 1;
-                    console.log("XORONUMBER: ");
-                    console.log(xOrORandom);
+                    let randomTurnIdentification = Math.floor(Math.random() * 2) + 1;
 
-                    if(xOrORandom === 1) {
-                        io.to(games[i].members[0].socket_id).emit('startGame', { piece: 'X' }); 
-                        io.to(games[i].members[1].socket_id).emit('startGame', { piece: 'O' }); 
+                    if(randomTurnIdentification === 1) {
+                        io.to(games[i].members[0].socket_id).emit('startGame', { playerRole: 'creator', turnIdentification: 'X' }); 
+                        io.to(games[i].members[1].socket_id).emit('startGame', { playerRole: 'joiner', turnIdentification: 'O' }); 
                     } 
 
-                    if(xOrORandom === 2) {
-                        io.to(games[i].members[0].socket_id).emit('startGame', { piece: 'O' }); 
-                        io.to(games[i].members[1].socket_id).emit('startGame', { piece: 'X' }); 
+                    if(randomTurnIdentification === 2) {
+                        io.to(games[i].members[0].socket_id).emit('startGame', { playerRole: 'creator', turnIdentification: 'O' }); 
+                        io.to(games[i].members[1].socket_id).emit('startGame', { playerRole: 'joiner', turnIdentification: 'X' }); 
                     }
                 }
             }
+          });
+
+          socket.on('playerMove', function(data){
+              console.log(data);
+                for(let i = 0; i < games.length; i++) {
+                    for(let j = 0; j < games[i].members.length; j++) {
+                        if(games[i].members[j].username === data.username) {
+                            if(j === 0) {
+                                // Send to 1
+                                io.to(games[i].members[1].socket_id).emit('playerMove', { playerName: data.username, playerMove: data.playerMove }); 
+                            }
+
+                            if(j === 1) {
+                                io.to(games[i].members[0].socket_id).emit('playerMove', { playerName: data.username, playerMove: data.playerMove }); 
+                            }
+                        }
+                    }
+                }
           });
     });
 
