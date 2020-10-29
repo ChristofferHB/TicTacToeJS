@@ -9,8 +9,8 @@ export class CreateGameLobbyComponent extends React.Component {
         super(props);
 
         this.state = {
-           waitingForOpponent: true,
-           opponentUsername: ''
+            waitingForOpponent: true,
+            opponentUsername: ''
         }
 
         this.userJoinedGameCallback = this.userJoinedGameCallback.bind(this);
@@ -30,65 +30,66 @@ export class CreateGameLobbyComponent extends React.Component {
     }
 
     startGameBtnOnClick() {
+        console.log("SFKKSF CALLED!");
         SocketConnection.emitStartGame(this.props.gameCode);
-    } 
+    }
 
     userJoinedGameCallback(user) {
         this.setState({
             waitingForOpponent: false,
             opponentUsername: user.username
-          });
+        });
     }
 
     render() {
 
-        if(this.state.waitingForOpponent) {
+        if (this.state.waitingForOpponent) {
             return (
                 <div>
                     <div id="createGameLobbyComponentContainer">
                     </div>
                     <div id="header">
-                            <p id="gameLobbyCode">Game code: {this.props.gameCode.code}</p>
+                        <p id="gameLobbyCode">Game code: {this.props.gameCode}</p>
                     </div>
                     <div id="playerContainer">
-                            <div id="playerOneContainer">
-                                {this.props.creatorUsername}
-                                <div id="checkmarkDiv">
-                                    <Checkmark size={35} />
-                                </div>
+                        <div id="playerOneContainer">
+                            {this.props.creatorUsername}
+                            <div id="checkmarkDiv">
+                                <Checkmark size={35} />
                             </div>
-                            <div id="playerTwoContainerWaiting">
-                                Waiting for player...
+                        </div>
+                        <div id="playerTwoContainerWaiting">
+                            Waiting for player...
                                 <div id="waitingForFriendAnimation"></div>
-                            </div>
+                        </div>
                     </div>
                 </div>
             )
-        } 
+        }
 
-        return(
+        return (
             <div>
-            <div id="createGameLobbyComponentContainer">
-                    </div>
-                    <div id="header">
-                            <p id="gameLobbyCode">Game code: {this.props.gameCode.code}</p>
-                    </div>
-                    <div id="playerContainer">
-                            <div id="playerOneContainer">
-                                {this.props.creatorUsername}
-                                <div id="checkmarkDiv">
-                                    <Checkmark size={35} />
-                                </div>
-                            </div>
-                            <div id="playerTwoContainer">
-                                {this.state.opponentUsername}
-                                <div id="otherUserCheckMarkDiv">
-                                        <Checkmark size={35} />
-                                </div>
-                            </div>
-                            <button id="startGameBtn" onClick={this.startGameBtnOnClick}>Start game</button>
-                    </div>
+                <div id="createGameLobbyComponentContainer">
                 </div>
+                <div id="header">
+                    <p id="gameLobbyCode">Game code: {this.props.gameCode}</p>
+                </div>
+                <div id="playerContainer">
+                    <div id="playerOneContainer">
+                        {this.props.creatorUsername}
+                        <div id="checkmarkDiv">
+                            <Checkmark size={35} />
+                        </div>
+                    </div>
+                    <div id="playerTwoContainer">
+                        {this.state.opponentUsername}
+                        <div id="otherUserCheckMarkDiv">
+                            <Checkmark size={35} />
+                        </div>
+                    </div>
+                    <button id="startGameBtn" onClick={this.startGameBtnOnClick}>Start game</button>
+                </div>
+            </div>
         );
     }
 }

@@ -4,7 +4,7 @@ import SocketConnection from './SocketConnection';
 export class NewGameComponent extends React.Component {
 
     constructor(props) {
-  
+
         super(props);
 
         this.joinGameButtonClick = this.joinGameButtonClick.bind(this);
@@ -30,7 +30,7 @@ export class NewGameComponent extends React.Component {
     createGameButtonClick() {
         SocketConnection.connect(this.props.username, 1);
 
-        setTimeout(function() { //Start the timer
+        setTimeout(function () { //Start the timer
             this.props.history.push("/creategamelobby");
         }.bind(this), 15)
     }
@@ -41,16 +41,16 @@ export class NewGameComponent extends React.Component {
 
     render() {
 
-            return (
+        return (
             <div>
                 <div id="newGameComponentContainer">
                     <p id="startScreenLogo">Tic Tac Toe</p>
                     <button id="createGameButtton" onClick={this.createGameButtonClick}>Create game</button>
                     <button id="joinGameButton" onClick={this.joinGameButtonClick}>Join game</button>
                     <button id="randomGameButton" onClick={this.randomGameButtonClick}>Play against random</button>
-                </div>        
+                </div>
             </div>
-            )
+        )
         return <div></div>
     }
 }
