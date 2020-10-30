@@ -160,15 +160,27 @@ function checkMoves(gameCode) {
             let playerOne = games[i].members[0].username;
             let playerTwo = games[i].members[1].username;
 
-            console.log("LOOKING !");
+            let winner = undefined;
 
             // Check for win condition first row horizontally
             if (board[0] !== undefined && board[1] !== undefined && board[2] !== undefined) {
                 if (board[0].username === playerOne && board[1].username === playerOne && board[2].username === playerOne) {
+
+                    winner = {
+                        winnerName: board[0].username,
+                        winCondition: [0, 1, 2]
+                    }
+
                     console.log(board[0].username + " scored three on a row!");
                 }
 
                 if (board[0].username === playerTwo && board[1].username === playerTwo && board[2].username === playerTwo) {
+
+                    winner = {
+                        winnerName: board[0].username,
+                        winCondition: [0, 1, 2]
+                    }
+
                     console.log(board[0].username + " scored three on a row!");
                 }
             }
@@ -176,10 +188,17 @@ function checkMoves(gameCode) {
             // Check for win condition second row horizontally
             if (board[3] !== undefined && board[4] !== undefined && board[5] !== undefined) {
                 if (board[3].username === playerOne && board[4].username === playerOne && board[5].username === playerOne) {
+
+                    winner = {
+                        winnerName: board[3].username,
+                        winCondition: [3, 4, 5]
+                    }
+
                     console.log(board[3].username + " scored three on a row!");
                 }
 
                 if (board[3].username === playerTwo && board[4].username === playerTwo && board[5].username === playerTwo) {
+                    winner = board[3].username;
                     console.log(board[3].username + " scored three on a row!");
                 }
             }
@@ -187,14 +206,152 @@ function checkMoves(gameCode) {
             // Check for win condition third row horizontally
             if (board[6] !== undefined && board[7] !== undefined && board[8] !== undefined) {
                 if (board[6].username === playerOne && board[7].username === playerOne && board[8].username === playerOne) {
+
+                    winner = {
+                        winnerName: board[6].username,
+                        winCondition: [6, 7, 8]
+                    }
+
                     console.log(board[6].username + " scored three on a row!");
                 }
 
                 if (board[6].username === playerTwo && board[7].username === playerTwo && board[8].username === playerTwo) {
+
+                    winner = {
+                        winnerName: board[6].username,
+                        winCondition: [6, 7, 8]
+                    }
+
                     console.log(board[6].username + " scored three on a row!");
                 }
             }
 
+            // Check for win condition left row vertically
+            if (board[0] !== undefined && board[3] !== undefined && board[6] !== undefined) {
+                if (board[0].username === playerOne && board[3].username === playerOne && board[6].username === playerOne) {
+
+                    winner = {
+                        winnerName: board[0].username,
+                        winCondition: [0, 3, 6]
+                    }
+
+                    console.log(board[0].username + " scored three on a row!");
+                }
+
+                if (board[0].username === playerTwo && board[3].username === playerTwo && board[6].username === playerTwo) {
+
+                    winner = {
+                        winnerName: board[0].username,
+                        winCondition: [0, 3, 6]
+                    }
+
+                    console.log(board[0].username + " scored three on a row!");
+                }
+            }
+
+           // Check for win condition center row vertically
+            if (board[1] !== undefined && board[4] !== undefined && board[7] !== undefined) {
+                if (board[1].username === playerOne && board[4].username === playerOne && board[7].username === playerOne) {
+
+                    winner = {
+                        winnerName: board[1].username,
+                        winCondition: [1, 4, 7]
+                    }
+
+                    console.log(board[1].username + " scored three on a row!");
+                }
+
+                if (board[1].username === playerTwo && board[4].username === playerTwo && board[7].username === playerTwo) {
+
+                    winner = {
+                        winnerName: board[1].username,
+                        winCondition: [1, 4, 7]
+                    }
+
+                    console.log(board[1].username + " scored three on a row!");
+                }
+            }
+
+            // Check for win condition right row vertically
+            if (board[2] !== undefined && board[5] !== undefined && board[8] !== undefined) {
+                if (board[2].username === playerOne && board[5].username === playerOne && board[8].username === playerOne) {
+
+                    winner = {
+                        winnerName: board[2].username,
+                        winCondition: [2, 5, 8]
+                    }
+
+                    console.log(board[2].username + " scored three on a row!");
+                }
+
+                if (board[2].username === playerTwo && board[5].username === playerTwo && board[8].username === playerTwo) {
+
+                    winner = {
+                        winnerName: board[2].username,
+                        winCondition: [2, 5, 8]
+                    }
+
+                    console.log(board[2].username + " scored three on a row!");
+                }
+            }
+
+            // Check for win condition from top left to bottom right
+            if (board[0] !== undefined && board[4] !== undefined && board[8] !== undefined) {
+                if (board[0].username === playerOne && board[4].username === playerOne && board[8].username === playerOne) {
+
+                    winner = {
+                        winnerName: board[0].username,
+                        winCondition: [0, 4, 8]
+                    }
+
+                    console.log(board[0].username + " scored three on a row!");
+                }
+
+                if (board[0].username === playerTwo && board[4].username === playerTwo && board[8].username === playerTwo) {
+
+                    winner = {
+                        winnerName: board[0].username,
+                        winCondition: [0, 4, 8]
+                    }
+
+                    console.log(board[0].username + " scored three on a row!");
+                }
+            }
+            
+            // Check for win condition from top right to bottom left
+            if (board[2] !== undefined && board[4] !== undefined && board[6] !== undefined) {
+                if (board[2].username === playerOne && board[4].username === playerOne && board[6].username === playerOne) {
+
+                    winner = {
+                        winnerName: board[2].username,
+                        winCondition: [2, 4, 6]
+                    }
+
+                    console.log(board[2].username + " scored three on a row!");
+                }
+
+                if (board[2].username === playerTwo && board[4].username === playerTwo && board[6].username === playerTwo) {
+
+                    winner = {
+                        winnerName: board[2].username,
+                        winCondition: [2, 4, 6]
+                    }
+
+                    console.log(board[2].username + " scored three on a row!");
+                }
+            }
+
+            if(winner !== undefined) {
+                if(winner.winnerName === playerOne) {
+                    io.to(games[i].members[0].socket_id).emit('gameFinished', { winData: winner });
+                    io.to(games[i].members[1].socket_id).emit('gameFinished', { winData: winner });
+                }
+    
+                if(winner.winnerName === playerTwo) {
+                    io.to(games[i].members[0].socket_id).emit('gameFinished', { winData: winner });
+                    io.to(games[i].members[1].socket_id).emit('gameFinished', { winData: winner });
+                }
+            }
         }
     }
 }

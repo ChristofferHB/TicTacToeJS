@@ -9,25 +9,42 @@ export class GameComponent extends React.Component {
 
         this.state = {
             boxData: [
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                ''
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
             ]
         }
 
         this.setBoxData = this.setBoxData.bind(this);
         this.boxOnClick = this.boxOnClick.bind(this);
         this.playerMoveCallback = this.playerMoveCallback.bind(this);
+        this.userWonGameCallback = this.userWonGameCallback.bind(this);
     }
 
     componentDidMount() {
         SocketConnection.setPlayerMoveCallback(this.playerMoveCallback);
+        SocketConnection.setUserWonGameCallback(this.userWonGameCallback);
+    }
+
+    userWonGameCallback(data) {
+        console.log("GOT DATA");
+        console.log(data);
+
+        let boxData = this.state.boxData;
+
+        for(let i = 0; i < data.winData.winCondition.length; i++) {
+            boxData[data.winData.winCondition[i]].bgColor = '#76c241';
+        }
+
+        this.setState({
+            boxData: boxData
+        });
     }
 
     playerMoveCallback(data) {
@@ -43,15 +60,15 @@ export class GameComponent extends React.Component {
 
         let boxData = this.state.boxData;
 
-        if(!boxData[playerMove]) {
+        if(!boxData[playerMove].turnIdentification) {
 
             if(playerName === undefined) { // undefined == this clients move
-                boxData[playerMove] = this.props.turnIdentification;
+                boxData[playerMove].turnIdentification = this.props.turnIdentification;
             } else {
                 if(this.props.turnIdentification === 'X') {
-                    boxData[playerMove] = 'O';
+                    boxData[playerMove].turnIdentification = 'O';
                 } else {
-                    boxData[playerMove] = 'X';
+                    boxData[playerMove].turnIdentification = 'X';
                 }
             }
 
@@ -63,6 +80,8 @@ export class GameComponent extends React.Component {
     }
 
     boxOnClick = (boxNumber) => {
+        console.log("BOXONCLICK: ");
+        console.log(boxNumber);
         this.setBoxData(boxNumber);
         SocketConnection.emitPlayerMove(this.props.gameCode, this.props.username, boxNumber);
     }
@@ -74,7 +93,7 @@ export class GameComponent extends React.Component {
                 <div id="gameContainer">
                     <div id="gridContainer">
                         {this.state.boxData.map((item, i) =>
-                            <div id="box" key={i} onClick={() => this.boxOnClick(i)}><p id="turnIdentification">{this.state.boxData[i]}</p></div>
+                            <div id="box" key={i} style={{backgroundColor: this.state.boxData[i].bgColor}} onClick={() => this.boxOnClick(i)}><p id="turnIdentification">{this.state.boxData[i].turnIdentification}</p></div>
                         )}
                     </div>
                 </div>

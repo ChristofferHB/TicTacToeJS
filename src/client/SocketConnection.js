@@ -8,6 +8,7 @@ let socket;
 let joinerStartGameCallback;
 let creatorStartGameCallback;
 let playerMoveCallback;
+let userWonGameCallback;
 
 function connect(username, option, gameCode) {
 
@@ -54,6 +55,11 @@ function connect(username, option, gameCode) {
     playerMoveCallback(data);
   });
 
+  socket.on('gameFinished', function (data) {
+    console.log("GAME FINISHED!!");
+    userWonGameCallback(data);
+  });
+
 }
 
 function emitStartGame(gameCode) {
@@ -64,6 +70,10 @@ function emitStartGame(gameCode) {
 function emitPlayerMove(gameCode, username, playerMove) {
   console.log(gameCode + " " + username + " " + playerMove);
   socket.emit('playerMove', { gameCode: gameCode, username: username, playerMove: playerMove });
+}
+
+function setUserWonGameCallback(callback) {
+  userWonGameCallback = callback;
 }
 
 function setUserJoinedGameCallback(callback) {
@@ -90,4 +100,4 @@ function setPlayerMoveCallback(callback) {
   playerMoveCallback = callback;
 }
 
-module.exports = { connect, setGameCodeSearchCallback, setGameCodeCallback, setUserJoinedGameCallback, setPlayerMoveCallback, setStartGameJoinerCallback, setStartGameCreatorCallback, emitStartGame, emitPlayerMove }
+module.exports = { connect, setGameCodeSearchCallback, setGameCodeCallback, setUserJoinedGameCallback, setPlayerMoveCallback, setStartGameJoinerCallback, setStartGameCreatorCallback, emitStartGame, emitPlayerMove, setUserWonGameCallback }
