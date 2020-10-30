@@ -18,7 +18,8 @@ export class GameComponent extends React.Component {
                 { turnIdentification: '', bgColor: '#fff' },
                 { turnIdentification: '', bgColor: '#fff' },
                 { turnIdentification: '', bgColor: '#fff' },
-            ]
+            ],
+            canSetBoxData: true
         }
 
         this.setBoxData = this.setBoxData.bind(this);
@@ -43,7 +44,8 @@ export class GameComponent extends React.Component {
         }
 
         this.setState({
-            boxData: boxData
+            boxData: boxData,
+            canSetBoxData: false
         });
     }
 
@@ -54,36 +56,34 @@ export class GameComponent extends React.Component {
     }
 
     setBoxData(playerMove, playerName) {
+            let boxData = this.state.boxData;
 
-        console.log("PLAYERMOVENAME: ");
-        console.log(playerName);
-
-        let boxData = this.state.boxData;
-
-        if(!boxData[playerMove].turnIdentification) {
-
-            if(playerName === undefined) { // undefined == this clients move
-                boxData[playerMove].turnIdentification = this.props.turnIdentification;
-            } else {
-                if(this.props.turnIdentification === 'X') {
-                    boxData[playerMove].turnIdentification = 'O';
+            if(!boxData[playerMove].turnIdentification) {
+    
+                if(playerName === undefined) { // undefined == this clients move
+                    boxData[playerMove].turnIdentification = this.props.turnIdentification;
                 } else {
-                    boxData[playerMove].turnIdentification = 'X';
+                    if(this.props.turnIdentification === 'X') {
+                        boxData[playerMove].turnIdentification = 'O';
+                    } else {
+                        boxData[playerMove].turnIdentification = 'X';
+                    }
                 }
+    
+                this.setState({
+                    boxData: boxData
+                });
+    
             }
-
-            this.setState({
-                boxData: boxData
-            });
-
-        }
     }
 
     boxOnClick = (boxNumber) => {
-        console.log("BOXONCLICK: ");
-        console.log(boxNumber);
-        this.setBoxData(boxNumber);
-        SocketConnection.emitPlayerMove(this.props.gameCode, this.props.username, boxNumber);
+        if(this.state.canSetBoxData) {
+            console.log("BOXONCLICK: ");
+            console.log(boxNumber);
+            this.setBoxData(boxNumber);
+            SocketConnection.emitPlayerMove(this.props.gameCode, this.props.username, boxNumber);
+        }
     }
 
     render() {
