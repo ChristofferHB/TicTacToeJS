@@ -18,8 +18,6 @@ export class NewGameComponent extends React.Component {
     }
 
     gameCodeCallback(gameCode) {
-        console.log("FROM CB: ");
-        console.log(gameCode);
         this.props.setGameCode(gameCode);
     }
 

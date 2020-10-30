@@ -41,7 +41,6 @@ export class App extends React.Component {
     }
 
     setGameCode(gameCode) {
-        console.log("GC SET! ");
         this.setState({
             gameCode: gameCode
         });
@@ -54,8 +53,6 @@ export class App extends React.Component {
     }
 
     setTurnIdentification(turnIdentification) {
-        console.log("SET: ");
-        console.log(turnIdentification);
 
         this.setState({
             turnIdentification: turnIdentification
@@ -63,9 +60,7 @@ export class App extends React.Component {
     }
 
     render() {
-        let v = React.version;
-        console.log("VERSION: ");
-        console.log(v);
+        
         
         return (
             <BrowserRouter>

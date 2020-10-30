@@ -124,35 +124,25 @@ function listen() {
         });
 
         socket.on('playerMove', function (data) {
-
-            console.log("PLAYERMOVE CALLED");
-            console.log(data);
-
-
-            for(let i = 0; i < games.length; i++) {
-                if(games[i].gameCode === data.gameCode) {
-                    console.log("FOUNDYESH!");
+            for (let i = 0; i < games.length; i++) {
+                if (games[i].gameCode === data.gameCode) {
                     let move = {
                         username: data.username,
                         playerMove: data.playerMove
                     }
 
                     let board = games[i].board;
-                    board.push(move);
+                    board[move.playerMove] = move;
                     games[i].board = board;
 
                     let members = games[i].members;
 
-                    for(let j = 0; j < members.length; j++) {
-                        if(members[j].username !== data.username) {
-                            io.to(members[j].socket_id).emit('playerMove', { playerName: data.username, playerMove: data.playerMove });
+                    for (let j = 0; j < members.length; j++) {
+                        if (members[j].username !== data.username) {
+                            checkMoves(data.gameCode); // Check board for win condition
+                            io.to(members[j].socket_id).emit('playerMove', { playerName: data.username, playerMove: data.playerMove }); // Send move to player
                         }
                     }
-
-                    console.log(games[i].members);
-
-                    //io.to(socket.id).emit('gameCode', { code: gameCode });
-
                 }
             }
         });
@@ -161,6 +151,52 @@ function listen() {
     http.listen(3000, () => {
         console.log('listening on *:3000');
     });
+}
+
+function checkMoves(gameCode) {
+    for (let i = 0; i < games.length; i++) {
+        if (games[i].gameCode === gameCode) {
+            let board = games[i].board;
+            let playerOne = games[i].members[0].username;
+            let playerTwo = games[i].members[1].username;
+
+            console.log("LOOKING !");
+
+            // Check for win condition first row horizontally
+            if (board[0] !== undefined && board[1] !== undefined && board[2] !== undefined) {
+                if (board[0].username === playerOne && board[1].username === playerOne && board[2].username === playerOne) {
+                    console.log(board[0].username + " scored three on a row!");
+                }
+
+                if (board[0].username === playerTwo && board[1].username === playerTwo && board[2].username === playerTwo) {
+                    console.log(board[0].username + " scored three on a row!");
+                }
+            }
+
+            // Check for win condition second row horizontally
+            if (board[3] !== undefined && board[4] !== undefined && board[5] !== undefined) {
+                if (board[3].username === playerOne && board[4].username === playerOne && board[5].username === playerOne) {
+                    console.log(board[3].username + " scored three on a row!");
+                }
+
+                if (board[3].username === playerTwo && board[4].username === playerTwo && board[5].username === playerTwo) {
+                    console.log(board[3].username + " scored three on a row!");
+                }
+            }
+
+            // Check for win condition third row horizontally
+            if (board[6] !== undefined && board[7] !== undefined && board[8] !== undefined) {
+                if (board[6].username === playerOne && board[7].username === playerOne && board[8].username === playerOne) {
+                    console.log(board[6].username + " scored three on a row!");
+                }
+
+                if (board[6].username === playerTwo && board[7].username === playerTwo && board[8].username === playerTwo) {
+                    console.log(board[6].username + " scored three on a row!");
+                }
+            }
+
+        }
+    }
 }
 
 function usernameExists(username) {
