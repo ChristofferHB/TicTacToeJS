@@ -19,7 +19,7 @@ export class GameComponent extends React.Component {
                 { turnIdentification: '', bgColor: '#fff' },
                 { turnIdentification: '', bgColor: '#fff' },
             ],
-            canSetBoxData: true
+            gameFinished: true
         }
 
         this.setBoxData = this.setBoxData.bind(this);
@@ -45,7 +45,7 @@ export class GameComponent extends React.Component {
 
         this.setState({
             boxData: boxData,
-            canSetBoxData: false
+            gameFinished: true
         });
     }
 
@@ -78,7 +78,7 @@ export class GameComponent extends React.Component {
     }
 
     boxOnClick = (boxNumber) => {
-        if(this.state.canSetBoxData) {
+        if(!this.state.gameFinished) {
             console.log("BOXONCLICK: ");
             console.log(boxNumber);
             this.setBoxData(boxNumber);
@@ -91,11 +91,30 @@ export class GameComponent extends React.Component {
             <div>
                 <div id="header"></div>
                 <div id="gameContainer">
+
                     <div id="gridContainer">
                         {this.state.boxData.map((item, i) =>
-                            <div id="box" key={i} style={{backgroundColor: this.state.boxData[i].bgColor}} onClick={() => this.boxOnClick(i)}><p id="turnIdentification">{this.state.boxData[i].turnIdentification}</p></div>
+                            <div id="box" key={i} style={{backgroundColor: this.state.boxData[i].bgColor}} onClick={() => this.boxOnClick(i)}>
+                                <p id="turnIdentification">{this.state.boxData[i].turnIdentification}</p>
+                            </div>
                         )}
                     </div>
+
+                    {this.state.gameFinished &&
+                
+                        <div>
+                            <div id="winnerTextDiv">
+                                    <p id="winnerText">Player is the winner!</p>
+                            </div>
+                            
+                            <div id="gameFinishedButtonDiv">
+                                <button id="playAgainButton">Play again</button>
+                                <button id="mainMenuButton">Main menu</button>
+                            </div>
+                        </div>
+
+                        }
+
                 </div>
             </div>
         )
