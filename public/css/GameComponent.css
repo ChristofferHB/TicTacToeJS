@@ -47,11 +47,13 @@
 }
 
 #turnIdentification {
-    width: 10px;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: bue;
-    font-size: 70px;
+    font-size: 5vmin;
     font-weight: 900;
-    position: absolute; left: 25%; top: -70%;
     cursor: context-menu;
 }
 

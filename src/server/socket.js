@@ -146,6 +146,12 @@ function listen() {
                 }
             }
         });
+
+        socket.on('restartGame', function (data) {
+            console.log("restartgame socket!");
+            restartGame(data.gameCode);
+        });
+
     });
 
     http.listen(3000, () => {
@@ -198,7 +204,12 @@ function checkMoves(gameCode) {
                 }
 
                 if (board[3].username === playerTwo && board[4].username === playerTwo && board[5].username === playerTwo) {
-                    winner = board[3].username;
+
+                    winner = {
+                        winnerName: board[3].username,
+                        winCondition: [3, 4, 5]
+                    }
+                    
                     console.log(board[3].username + " scored three on a row!");
                 }
             }
@@ -352,6 +363,17 @@ function checkMoves(gameCode) {
                     io.to(games[i].members[1].socket_id).emit('gameFinished', { winData: winner });
                 }
             }
+        }
+    }
+}
+
+function restartGame(gameCode) {
+    for(let i = 0; i < games.length; i++) {
+        if(games[i].gameCode === gameCode) {
+            games[i].board = [];
+
+            io.to(games[i].members[0].socket_id).emit('restartGame');
+            io.to(games[i].members[1].socket_id).emit('restartGame');
         }
     }
 }

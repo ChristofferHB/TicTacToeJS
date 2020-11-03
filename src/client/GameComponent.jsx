@@ -9,28 +9,44 @@ export class GameComponent extends React.Component {
 
         this.state = {
             boxData: [
-                { turnIdentification: '', bgColor: '#fff' },
-                { turnIdentification: '', bgColor: '#fff' },
-                { turnIdentification: '', bgColor: '#fff' },
-                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: 'X', bgColor: '#fff' },
+                { turnIdentification: 'X', bgColor: '#fff' },
+                { turnIdentification: 'X', bgColor: '#fff' },
+                { turnIdentification: 'X', bgColor: '#fff' },
                 { turnIdentification: '', bgColor: '#fff' },
                 { turnIdentification: '', bgColor: '#fff' },
                 { turnIdentification: '', bgColor: '#fff' },
                 { turnIdentification: '', bgColor: '#fff' },
                 { turnIdentification: '', bgColor: '#fff' },
             ],
-            gameFinished: true
+            gameFinished: false,
+            winnerUsername: undefined
         }
 
         this.setBoxData = this.setBoxData.bind(this);
         this.boxOnClick = this.boxOnClick.bind(this);
+
         this.playerMoveCallback = this.playerMoveCallback.bind(this);
         this.userWonGameCallback = this.userWonGameCallback.bind(this);
+        this.restartGameCallback = this.restartGameCallback.bind(this);
+
+        this.mainMenuButtonOnClick = this.mainMenuButtonOnClick.bind(this);
+        this.restartGameButtonOnClick = this.restartGameButtonOnClick.bind(this);
     }
 
     componentDidMount() {
         SocketConnection.setPlayerMoveCallback(this.playerMoveCallback);
         SocketConnection.setUserWonGameCallback(this.userWonGameCallback);
+        SocketConnection.setRestartGameCallback(this.restartGameCallback);
+    }
+
+    mainMenuButtonOnClick() {
+        this.history.push("/");
+    }
+
+    restartGameButtonOnClick() {
+        console.log("BTN ONCLICK");
+        SocketConnection.emitRestartGame(this.props.gameCode);
     }
 
     userWonGameCallback(data) {
@@ -45,7 +61,8 @@ export class GameComponent extends React.Component {
 
         this.setState({
             boxData: boxData,
-            gameFinished: true
+            gameFinished: true,
+            winnerUsername: data.winData.winnerName
         });
     }
 
@@ -53,6 +70,24 @@ export class GameComponent extends React.Component {
         console.log("CALLBACK: ");
         console.log(data);
         this.setBoxData(data.playerMove, data.playerName);
+    }
+
+    restartGameCallback() {
+        this.setState({
+            boxData: [
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+                { turnIdentification: '', bgColor: '#fff' },
+            ],
+            gameFinished: false,
+            winnerUsername: undefined
+        });
     }
 
     setBoxData(playerMove, playerName) {
@@ -104,12 +139,12 @@ export class GameComponent extends React.Component {
                 
                         <div>
                             <div id="winnerTextDiv">
-                                    <p id="winnerText">Player is the winner!</p>
+                                    <p id="winnerText">{this.state.winnerUsername} is the winner!</p>
                             </div>
                             
                             <div id="gameFinishedButtonDiv">
-                                <button id="playAgainButton">Play again</button>
-                                <button id="mainMenuButton">Main menu</button>
+                                <button id="playAgainButton" onClick={this.restartGameButtonOnClick}>Play again</button>
+                                <button id="mainMenuButton" onClick={this.mainMenuButtonOnClick}>Main menu</button>
                             </div>
                         </div>
 
